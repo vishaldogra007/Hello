@@ -1,0 +1,18 @@
+package com.test.java;
+
+import java.util.Set;
+import java.util.*;
+
+public class Source {
+	public static void main(String args[]) {
+		List<String> list = new ArrayList<>();
+		list.add("Java");
+		list.add("World");
+		list.add("java");
+		Consumer<List<String>> consumer = Collections ::reverse;
+	    consumer.accept(list);
+		System.out.println(list);
+		
+	}
+
+}

@@ -1,0 +1,76 @@
+package com.test.java;
+
+class SpamDetector{
+ private int primaryCount;
+ private int promotionCount;
+ private int updateCount;
+public int getPrimaryCount() {
+	return primaryCount;
+}
+public void setPrimaryCount(int primaryCount) {
+	this.primaryCount = primaryCount;
+}
+public int getPromotionCount() {
+	return promotionCount;
+}
+public void setPromotionCount(int promotionCount) {
+	this.promotionCount = promotionCount;
+}
+public int getUpdateCount() {
+	return updateCount;
+}
+public void setUpdateCount(int updateCount) {
+	this.updateCount = updateCount;
+}
+   
+SpamDetector(int primaryCount , int promotionCount , int updateCount){}
+
+public String addmessage (String email) throws SpamAttackException , SuspendException {
+	String[] ls = email.split(" ");
+	for(String var : ls) {
+		if(var.equals("offer") || var.equals("bonanza") || var.equals("sale") ||var.equals("hurry") ) {
+			promotionCount = promotionCount + 1;
+		}else if(var.equals("excel") || var.equals("word") || var.equals("ppt") ||var.equals("update")) {
+			updateCount=updateCount +1;
+		}else {
+			primaryCount = primaryCount+1;
+		}
+	}
+	if(promotionCount > updateCount && updateCount > primaryCount  ) {
+		throw new SuspendException("Account Suspended");
+	}else if(promotionCount > ((primaryCount + updateCount)*0.75)) {
+		throw new SpamAttackException("Account in Attack");
+	}else {
+		return "Safe";
+	}
+}
+ 
+	
+	
+}
+
+class SpamAttackException extends Exception {
+	public SpamAttackException(String message) {
+		super(message);
+		
+	}
+}
+class SuspendException extends Exception {
+	public SuspendException(String message) {
+		super(message);
+		
+	}
+}
+
+public class Source2 {
+	public static void main(String args[]) {
+		try {
+			SpamDetector spamDetector = new SpamDetector(0 , 0 ,0);
+			System.out.println(spamDetector.addmessage("iphone 21"));
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}

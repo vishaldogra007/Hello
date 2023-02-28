@@ -1,0 +1,62 @@
+package com.test.java;
+
+import java.util.ArrayList;
+import java.util.List;
+
+ class Technology {
+	private int techIndex;
+	private String tech;
+	public int getTechIndex() {
+		return techIndex;
+	}
+	public void setTechIndex(int techIndex) {
+		this.techIndex = techIndex;
+	}
+	public String getTech() {
+		return tech;
+	}
+	public void setTech(String tech) {
+		this.tech = tech;
+	}
+	@Override
+	public String toString() {
+		return "Technology [techIndex=" + techIndex + ", tech=" + tech + "]";
+	}
+
+	
+	
+
+}
+ class TechService {
+	String[] techArray = {"Java" , "Python" ,"C#" , "MERN" , "MEAN" };
+	public List<String> getAllTexts(String sentence){
+		List<String> l1 = new ArrayList<String>();
+		for (String val: sentence.split(" ")){
+			l1.add(val);
+			
+		}
+		return l1;
+	    
+    }
+		
+//	public List<Technology> getTechnology(String sentence){
+//		List<Technology> l2 = new ArrayList<Technology>();
+//		for (String val: sentence.split(" ")){
+//            
+//			if(val == "Java" || val == "Python" ||val == "C#" ||val == "MERN" || val == "MEAN") {
+//				l2.add(val);
+//			}	
+//		}
+//		return l2;
+//	}
+}
+ public class Source{
+	 public static void main(String args[]) {
+		 TechService t = new TechService();
+		 List<String> s = t.getAllTexts("Hello World");
+		 for(String st : s) {
+			 
+		 }
+		 
+	 }
+ }
